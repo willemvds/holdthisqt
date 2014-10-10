@@ -1,12 +1,12 @@
 package main
 
 import (
-	"log"
 	"fmt"
+	"log"
 	"net"
 	"os"
-	"runtime"
 	"os/signal"
+	"runtime"
 
 	"github.com/willemvds/holdthisqt"
 )
@@ -17,7 +17,7 @@ const UNIXCOUNT = 10
 func main() {
 	runtime.GOMAXPROCS(runtime.NumCPU())
 
-	listeners := make([]net.Listener, 0, TCPCOUNT + UNIXCOUNT)
+	listeners := make([]net.Listener, 0, TCPCOUNT+UNIXCOUNT)
 
 	for i := 0; i < TCPCOUNT; i++ {
 		tcpl, err := net.Listen("tcp", fmt.Sprintf(":420%02d", i))
@@ -39,7 +39,7 @@ func main() {
 
 	server := holdthisqt.NewLockServer(listeners)
 	fmt.Println(server)
-	
+
 	sigChan := make(chan os.Signal, 1)
 	signal.Notify(sigChan, os.Interrupt)
 	<-sigChan

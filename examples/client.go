@@ -1,17 +1,17 @@
 package main
 
 import (
-	"os"
 	"bytes"
-	"errors"
 	"encoding/binary"
-	"io"
-	"net"
-	"runtime"
-	"math/rand"
+	"errors"
 	"fmt"
+	"io"
 	"log"
+	"math/rand"
+	"net"
+	"os"
 	"os/signal"
+	"runtime"
 	"sync/atomic"
 )
 
@@ -35,7 +35,7 @@ var lockValues = [][]byte{
 	[]byte("time.machine.1"),
 	[]byte("machine.man.1"),
 	[]byte("man.poo.1"),
-	[]byte("poo.party.1"),	
+	[]byte("poo.party.1"),
 }
 
 var errNo = errors.New("NO NO NO... wait... NO")
@@ -69,7 +69,7 @@ func worker(id string, conn net.Conn) {
 		err := getLock(conn, lockValues[rand.Intn(len(lockValues))])
 		if err != nil {
 			if err == errNo {
-				noCount++	
+				noCount++
 			} else if err == errEr {
 				erCount++
 			} else {
@@ -78,9 +78,9 @@ func worker(id string, conn net.Conn) {
 		} else {
 			okCount++
 		}
-		if (okCount + noCount + erCount + otherCount) % 50000 == 0 {
+		if (okCount+noCount+erCount+otherCount)%50000 == 0 {
 			atomic.AddUint64(&total, 50000)
-			fmt.Printf("%s: %d requests, %d OK, %d NO, %d ER, %d Other\n", id, okCount + noCount + erCount + otherCount, okCount, noCount, erCount, otherCount)
+			fmt.Printf("%s: %d requests, %d OK, %d NO, %d ER, %d Other\n", id, okCount+noCount+erCount+otherCount, okCount, noCount, erCount, otherCount)
 		}
 	}
 }

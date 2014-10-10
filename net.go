@@ -1,10 +1,10 @@
 package holdthisqt
 
 import (
-	"encoding/binary"
 	"bytes"
-	"net"
+	"encoding/binary"
 	"io"
+	"net"
 )
 
 func getResultBytes(r lockResult) []byte {
@@ -16,7 +16,7 @@ func getResultBytes(r lockResult) []byte {
 
 type lockServer struct {
 	listeners []net.Listener
-	locklist lockList
+	locklist  lockList
 }
 
 // TODO: more cowbell
@@ -42,7 +42,7 @@ func NewLockServer(listeners []net.Listener) lockServer {
 				go HandleConnection(conn, lockfunc)
 			}
 		}()
-	}	
+	}
 	return server
 }
 
