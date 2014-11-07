@@ -27,15 +27,6 @@ var lockValues = [][]byte{
 	[]byte("machine.man"),
 	[]byte("man.poo"),
 	[]byte("poo.party"),
-
-	[]byte("foo.bar.1"),
-	[]byte("bar.one.1"),
-	[]byte("one.time.1"),
-	[]byte("time.time.1"),
-	[]byte("time.machine.1"),
-	[]byte("machine.man.1"),
-	[]byte("man.poo.1"),
-	[]byte("poo.party.1"),
 }
 
 var errNo = errors.New("NO NO NO... wait... NO")
