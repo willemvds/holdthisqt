@@ -44,7 +44,6 @@ func NewLockList(slotCount int) lockList {
 func (locklist lockList) lock(req lockRequest) lockResult {
 	for i := range locklist.slots {
 		if bytes.Equal(req.value, locklist.slots[i]) {
-			locklist.slots[req.slot] = nil
 			return RESPONSE_NO
 		}
 	}
